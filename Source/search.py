@@ -4,7 +4,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 
 class QAVecLLM:
-    def __init__(self, chunks):
+    def __init__(self, chunks,key):
 
         self.documents = [' '.join(map(str, chunk)) for chunk in chunks]
 
@@ -13,7 +13,7 @@ class QAVecLLM:
         self.document_vectors = self.vectorizer.fit_transform(self.documents)
 
         # Initialisez le modèle de langage (GPT-3 dans ce cas)
-        self.openai_api_key = "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"
+        self.openai_api_key = key
         openai.api_key = self.openai_api_key
 
     def find_answer(self, question):

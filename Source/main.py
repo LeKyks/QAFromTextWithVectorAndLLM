@@ -3,12 +3,17 @@ import search as s
 from fastapi import FastAPI, HTTPException
 import uvicorn
 
+
 def main():
     # This is the main function
+    with open(".env", 'r') as fichier:
+        # Lisez le contenu du fichier et attribuez-le à la variable cle_api
+        cle_api = fichier.read().strip()
+    
     tokenizer=tk.Tokenizer()
     input_text = open("1_transcript.txt", "r",encoding='utf-8').read()
     chunks = tokenizer.create_chunks(text=input_text, max_tokens=500)
-    qa_engine = s.QAVecLLM(chunks)
+    qa_engine = s.QAVecLLM(chunks,cle_api)
 
     question = "Quelle est la réponse dans le deuxième chunk ?"
     answer = qa_engine.find_answer(question)
