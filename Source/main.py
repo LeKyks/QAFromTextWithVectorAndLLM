@@ -5,9 +5,8 @@ import uvicorn
 
 
 def main():
-    # This is the main function
     with open(".env", 'r') as fichier:
-        # Lisez le contenu du fichier et attribuez-le à la variable cle_api
+        # Lis le contenu du fichier et attribuez-le à la variable cle_api
         cle_api = fichier.read().strip()
     
     tokenizer=tk.Tokenizer()
@@ -15,9 +14,11 @@ def main():
     chunks = tokenizer.create_chunks(text=input_text, max_tokens=500)
     qa_engine = s.QAVecLLM(chunks,cle_api)
 
-    question = "Quelle est la réponse dans le deuxième chunk ?"
+    question = "Dans quelle salle est l'assemblee generale?"
     answer = qa_engine.find_answer(question)
     print(f"Question : {question}\nRéponse : {answer}")
+    
+    #Cette partie est pour l'utilisation de l'API :
     
     # app=FastAPI()
     # @app.get("/")

@@ -2,17 +2,17 @@ import tiktoken
 
 
 class Tokenizer:
-    #class to tokenize and chunk text
+    #Classe qui permet de tokeniser un texte et de le découper en chunks
     def __init__(self, max_tokens=500):
         self.encoding = tiktoken.get_encoding("cl100k_base")
         self.encoding = tiktoken.encoding_for_model("gpt-3.5-turbo")
 
     def txt_to_tokens(self, text):
-        #tokenize text
+        #tokenize le texte
         return self.encoding.encode(text)
     
     def create_chunks(self, text, max_tokens=500):
-        #create chunks of text
+        #Créer des chunks de texte de taille max_tokens
         tokens = self.txt_to_tokens(text)
         chunks = []
         while len(tokens)>max_tokens:
