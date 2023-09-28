@@ -1,2 +1,2 @@
 # TestNLP
-Api qui prend en entrée une question et qui va chercher la réponse dans un texte
+API de question réponse qui prend n'importe quel texte et cherche la réponse à votre question dans celui ci en utilisant une base de données vectorielle ainsi qu'un LLM
